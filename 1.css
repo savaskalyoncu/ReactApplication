@@ -1,0 +1,429 @@
+/* Space out content a bit */
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #FCFCFC;
+  font-style: helvetica;
+}
+
+.header,
+.footer {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.header h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 40px;
+}
+
+.page-header{
+  border-bottom: none;
+}
+
+.margin-row{
+  font-size: 12px;
+  text-align:justify;
+  margin: 12px 5px 12px 5px;
+}
+
+.lessMarginRow{
+  font-size: 12px;
+  text-align: justify;
+  margin: 0px 5px 0px 5px;
+}
+
+
+.margin-col{
+  margin: 10px 0px 10px 0px;
+}
+
+.form-group label{
+  color: #1F4441;
+}
+
+.checkbox-group{
+  margin: 0px 5px 0px 5px;
+}
+
+.footer {
+  padding-top: 19px;
+  color: #777;
+  margin-top: 8em;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
+}
+.container-narrow > hr {
+  margin: 30px 0;
+}
+
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+.jumbotron .btn {
+  padding: 14px 24px;
+  font-size: 21px;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #C9C9C9;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #C9C9C9;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #C9C9C9;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #C9C9C9;
+}
+:placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+  color:    #C9C9C9;
+}
+
+.form-control::-webkit-input-placeholder
+{
+  color:    #C9C9C9;
+}
+
+.form-control:-moz-placeholder
+{
+  color:    #C9C9C9;
+}
+
+.form-control:-ms-input-placeholder
+{
+  color:    #C9C9C9;
+}
+
+.header-row h3 {
+  color: #1F4441;
+}
+
+.logo-line{
+  text-align: center;
+}
+
+.box-center {
+  /* -- CSS3 - add a drop shadow -- */
+  -webkit-box-shadow: 0 0 1px 1px #e5e5e5;
+  -moz-box-shadow: 0 0 1px 1px #e5e5e5;
+  box-shadow: 0 0 1px 1px #e5e5e5;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -khtml-border-radius: 2px;
+  border-radius: 2px;
+  outline: none;
+  background:white;
+}
+
+.innerbox{
+  margin: 15px 10px 15px 10px;
+}
+
+.full-circle {
+ background-color: rgba(204, 0, 102, 0);
+ border: 2px solid #12B5AA;
+ height: 20px;
+ width: 20px;
+ -moz-border-radius:75px;
+ -webkit-border-radius: 75px;
+}
+
+span[class*="glyphicon-one-fine"] {
+  overflow: hidden;
+  margin-bottom: -.4em;
+  margin-right: -.2em;
+}
+
+.glyphicon-one-fine-empty-green-dot:before {
+  content:"\25cb";
+  font-size: 3em;
+  color: green;
+}
+
+.glyphicon-one-fine-empty-grey-dot:before {
+  content:"\25cb";
+  font-size: 3em;
+  color: #D8D8D8;
+  margin-right: .2em;
+}
+
+.input-button-custom{
+  display: block;
+  width: 100%;
+  height: 34px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #FCFCFC;
+}
+
+.input-custom{
+  height: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #FCFCFC;
+}
+
+.checkbox-control{
+  display: block;
+  width: 100%;
+  height: 15px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-image: none;
+}
+
+.checkbox-input-custom{
+  border:none;
+  background-image: none;
+  background-color: white;
+  background: none;
+  padding-right: 0 ;
+  padding-left: 0px ;
+  padding-top: 0 ;
+  padding-bottom: 0 ;
+}
+
+.input-custom p{
+  margin:0 auto;
+}
+
+.button{
+  display:table-cell;
+  vertical-align:middle;
+}
+
+h3 {
+ vertical-align: center;
+ text-align: center;
+ margin:0
+}
+
+h4 {
+ vertical-align: center;
+ text-align: center;
+ margin:0;
+ margin-left: -1em;
+}
+
+#searchField {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #FCFCFC;
+  vertical-align: middle;
+  margin-bottom: 25px;
+}
+
+#myPanel{
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #FCFCFC;
+  vertical-align: middle;
+  margin-top: 8px;
+}
+
+#myPanelBody{
+  margin-top: -1.5em;  
+  color: black;
+}
+
+.row.less-gutter {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.row.less-gutter [class*='col-']{
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+/* Custom page footer */
+.myFooter {
+  margin-top: 15%;
+  margin-bottom: 0;
+  color: #6C6F6F;
+  border-top: none;
+}
+
+#footer-link{
+    margin-left: 2em;
+    color: #B7B7B7;
+}
+
+#paginatorDiv{
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.pagination>.active>a, 
+.pagination>.active>a:focus, 
+.pagination>.active>a:hover, 
+.pagination>.active>span, 
+.pagination>.active>span:focus, 
+.pagination>.active>span:hover {
+    color: black;
+    cursor: default;
+    background-color: #FCFCFC;
+    border: 1px solid #ccc;
+}
+
+.pagination>li>a, 
+.pagination>li>span {
+    color: #ccc;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+  }
+
+.pagination>li>a, 
+.pagination>li>span {
+    margin-left: 3px;
+    margin-right: 3px;
+  }
+
+.pagination>li:last-child>a, .pagination>li:last-child>span {
+     border: none;
+}
+
+.pagination>li:first-child>a, .pagination>li:first-child>span {
+     border: none;
+}
+
+.logo-div{
+/*  margin-bottom: 100px;*/
+  text-align: center;
+}
+
+.container{
+  margin-bottom: 50px;
+/*  margin-bottom: 8%;*/
+  margin-top: 50px;
+}
+
+.hide{
+  visibility: hidden;
+}
+
+#myPanel{
+  height: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #FCFCFC;
+  vertical-align:middle;
+  font-size: 1.2em;
+  border-radius: 3px;
+  border-color: #E6E6E6;
+  color: #A4A4A4;
+  display: flex;
+}
+
+#nameResult{
+  color: black;
+}
+
+.countNumber{
+  margin-left: 2.3em;
+  font-size: .9em;
+  white-space: normal;
+}
+
+#panelGlyph{
+  margin-top: 1.1em;
+  margin-left: 1.5em;
+}
+
+#panelCell1{
+  flex:1;
+  width: 90%;
+  text-align: left;
+}
+
+#panelCell2{
+
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .header,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  /* Space out the masthead */
+  .header {
+    margin-bottom: 30px;
+  }
+  /* Remove the bottom border on the jumbotron for visual effect */
+  .jumbotron {
+    border-bottom: 0;
+  }
+}
+
+/* Responsive: Portrait tablets and smaller */
+@media screen and (max-width: 768px) {
+  .footer {
+    margin-left: -2em;
+  }
+
+}

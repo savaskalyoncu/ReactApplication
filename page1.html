@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="1.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.25.1/react-bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/classnames/2.1.5/index.min.js"></script>
+    <title>Page1</title>
+  </head>
+  <body>
+    <Grid className="show-grid">
+      <PageHeader>
+        <h4>
+            <span >
+              <span class="glyphicon glyphicon-one-fine-empty-green-dot">
+              </span>
+                MEDCOMPANY
+            </span>
+        </h4>
+        <br/>
+        <small><p class="logo-line">Medcompany Efficacy Study</p></small>
+      </PageHeader>
+      <div id="content"></div>
+      <footer class="footer">
+        <p>
+          <a id='footer-link' href="www.someurl.com/contact" style="text-decoration:underline">Contact us</a>
+        </p>
+      </footer>
+    </Grid> 
+
+  <script type="text/jsx">
+    /** @jsx React.DOM */
+   'use strict';
+    var Accordion= ReactBootstrap.Accordion,
+        Affix= ReactBootstrap.Affix,
+        AffixMixin= ReactBootstrap.AffixMixin,
+        Alert= ReactBootstrap.Alert,
+        BootstrapMixin= ReactBootstrap.BootstrapMixin,
+        Badge= ReactBootstrap.Badge,
+        Button= ReactBootstrap.Button,
+        ButtonGroup= ReactBootstrap.ButtonGroup,
+        ButtonToolbar= ReactBootstrap.ButtonToolbar,
+        ButtonInput= ReactBootstrap.ButtonInput,
+        Carousel= ReactBootstrap.Carousel,
+        CarouselItem= ReactBootstrap.CarouselItem,
+        Col= ReactBootstrap.Col,
+        CollapsableMixin= ReactBootstrap.CollapsableMixin,
+        DropdownButton= ReactBootstrap.DropdownButton,
+        DropdownMenu= ReactBootstrap.DropdownMenu,
+        DropdownStateMixin= ReactBootstrap.DropdownStateMixin,
+        FadeMixin= ReactBootstrap.FadeMixin,
+        Glyphicon= ReactBootstrap.Glyphicon,
+        Grid= ReactBootstrap.Grid,
+        Input= ReactBootstrap.Input,
+        Interpolate= ReactBootstrap.Interpolate,
+        Jumbotron= ReactBootstrap.Jumbotron,
+        Label= ReactBootstrap.Label,
+        ListGroup= ReactBootstrap.ListGroup,
+        ListGroupItem= ReactBootstrap.ListGroupItem,
+        MenuItem= ReactBootstrap.MenuItem,
+        Modal= ReactBootstrap.Modal,
+        Nav= ReactBootstrap.Nav,
+        Navbar= ReactBootstrap.Navbar,
+        NavItem= ReactBootstrap.NavItem,
+        ModalTrigger= ReactBootstrap.ModalTrigger,
+        OverlayTrigger= ReactBootstrap.OverlayTrigger,
+        OverlayMixin= ReactBootstrap.OverlayMixin,
+        PageHeader= ReactBootstrap.PageHeader,
+        Panel= ReactBootstrap.Panel,
+        PanelGroup= ReactBootstrap.PanelGroup,
+        PageItem= ReactBootstrap.PageItem,
+        Pager= ReactBootstrap.Pager,
+        Popover= ReactBootstrap.Popover,
+        ProgressBar= ReactBootstrap.ProgressBar,
+        Row= ReactBootstrap.Row,
+        SplitButton= ReactBootstrap.SplitButton,
+        SubNav= ReactBootstrap.SubNav,
+        TabbedArea= ReactBootstrap.TabbedArea,
+        Table= ReactBootstrap.Table,
+        TabPane= ReactBootstrap.TabPane,
+        Tooltip= ReactBootstrap.Tooltip,
+        Well= ReactBootstrap.Well;
+
+
+    var FormBox = React.createClass({
+      handleFormSubmit: function(formData) {
+        //instead of submitting the form, part of the information is printed in browser console
+        $.ajax({
+          url: this.props.url,
+          dataType: 'json',
+          type: 'POST',
+          data: formData,
+          success: function(formData) {
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(this.props.url, status, err.toString());
+          }.bind(this)
+        });
+        //Print result of search in Console
+        for (var key in formData) {
+          if (formData.hasOwnProperty(key)) {
+            console.log(key + " -> " + formData[key]);
+          }
+        }
+      },
+      getInitialState: function() {
+        return {data: []};
+      },
+      render: function() {
+        return (
+          <div className="formBox">
+            <MyForm onFormSubmit={this.handleFormSubmit}/>
+          </div>
+        );
+      }
+    });
+
+    var MyForm = React.createClass({
+      getInitialState: function() {
+        return {
+          first_name: "",
+          last_name: "",
+          myLocation:"",
+          validInput1: false,
+          validInput2: false, 
+          validInput3: false,
+          checkBoxChecked: false
+        };
+      },
+      handleSubmit: function(e) {
+        //we don't want the form to submit, so we prevent the defaul behavior
+        e.preventDefault();
+        var first_name = this.state.first_name.trim();
+        var last_name = this.state.last_name.trim();
+        var myLocation = this.state.myLocation.trim();
+        if (!first_name|!last_name|!myLocation) {
+          return;
+        }
+        //final submit to the parent component
+        this.props.onFormSubmit({
+          first_name: first_name,
+          last_name: last_name,
+          myLocation: myLocation,
+        });
+      },
+      validateAllFields: function() {
+        return (this.state.validInput1 && this.state.validInput2 && this.state.validInput3 && this.state.checkBoxChecked);
+      },
+      validateFirstName: function(value) {
+        var re = /^[a-zA-Z]+$/;
+        this.setState({validInput1: re.test(value)});
+        return re.test(value);
+      },  
+       validateLastName: function(value) { 
+        var re = /^[a-zA-Z]+$/;
+        this.setState({validInput2: re.test(value)});
+        return re.test(value);
+      },  
+      validateLocation: function(value) { 
+        var re = /^[a-zA-Z, \s]+$/;
+        this.setState({validInput3: re.test(value)});
+        return re.test(value);
+      },
+      commonValidate: function () {
+        //general validate here for all fields if wanted
+        return true;
+      },
+      handleFirstNameInput: function (event) {
+        this.setState({
+          first_name: event.target.value
+        });
+      },
+      handleLastNameInput: function (event) {
+        this.setState({
+          last_name: event.target.value
+        });
+      },
+      handleLocationInput: function (event) {
+        this.setState({
+          myLocation: event.target.value
+        });
+      },
+      handleCheckBoxClick: function (myBoolean) {
+        this.setState({
+          checkBoxChecked: myBoolean
+        });
+      },
+      handleClick: function() {
+        window.location = 'page2.html';
+      },
+      render: function() {
+        var buttonDisabled = 'disabled';
+        var buttonValue = "Complete the form to continue enrollment";
+        if (this.validateAllFields() == true) {
+          buttonDisabled = '';
+          buttonValue = "I understand and wish to continure with enrollment";
+        }
+        else if (this.validateAllFields == false)
+          buttonDisabled = 'disabled';
+        var _this = this;
+        var style = {
+          height: "auto",
+          paddingTop: "20px",
+          paddingBottom: "20px",
+          paddingLeft: "15px",
+          paddingRight: "15px",
+          backgroundColor: "#FCFCFC",
+          verticalAlign:"middle",
+          fontSize: "1.2em",
+          borderRadius: "3px",
+          borderColor: "#E6E6E6"
+        };
+        //Each form field is actually another component.
+        return (
+          <Grid>
+            <Row>
+              <Col sm={10} smOffset={1}className="container box-center">
+                <div className="innerbox">
+                  <form id='surveyForm' className="MyForm" onSubmit={this.handleSubmit}>
+                    <fieldset>
+                      <Row className='header-row less-gutter'>
+                        <Col sm={12}>  
+                          <PageHeader><h3>Voluntary Participation</h3>
+                          </PageHeader>
+                        </Col>  
+                      </Row>
+                      <Row className='margin-row less-gutter'>
+                        <Col sm={12}>    
+                          <p>Participation in this study is voluntary. If you do not wish to participate, there will be no penalty of any kind.</p>
+                        </Col>
+                      </Row>
+                      <Row className='margin-row less-gutter'>
+                        <Col sm={12}>     
+                          <p>To confirm your intent to enroll in this study, please complete the form below.</p>
+                        </Col>
+                      </Row>
+                      <Row className='lessMarginRow less-gutter form-row'>
+                        <Col sm={6}> 
+                          <label for="user_firstname">First name</label> 
+                          <MyInput
+                            id="user_firstname"
+                            name="user[firstname]"
+                            uniqueName="name"
+                            text="John"
+                            size="30" 
+                            type="text"
+                            required={true}
+                            minCharacters={1}
+                            validate={this.validateFirstName}
+                            onChange={this.handleFirstNameInput} 
+                            errorMessage="first name is invalid"
+                            emptyMessage="first name is required" />
+                        </Col>
+                        <Col sm={6}> 
+                          <label for="user_lastname">Last name</label>
+                          <MyInput
+                            id="user_lastname" 
+                            name="user[lastname]"  
+                            size="30" 
+                            type="text"
+                            text="Doe"
+                            uniqueName="name"
+                            required={true}
+                            minCharacters={1}
+                            validate={this.validateLastName}
+                            onChange={this.handleLastNameInput} 
+                            errorMessage="last name is invalid"
+                            emptyMessage="last name is required" />
+                        </Col>
+                      </Row>  
+                      <Row className='lessMarginRow less-gutter'>
+                        <Col sm={12}>
+                          <label for="user_title">What city were you born in?</label>    
+                          <MyInput
+                            id="user_title" 
+                            name="user[title]" 
+                            size="30" 
+                            type="text"
+                            text="City Name"
+                            uniqueName="location"
+                            required={true}
+                            minCharacters={1}
+                            validate={this.validateLocation}
+                            onChange={this.handleLocationInput} 
+                            errorMessage="Location is invalid"
+                            emptyMessage="Location is required" />
+                        </Col>
+                      </Row>
+                    <Row className='lessMarginRow less-gutter'>
+                      <Col sm={12}>  
+                        <div className='form-group checkbox-control input-custom checkbox-input-custom'>   
+                           <Consent
+                              onChange={this.handleCheckBoxClick}/> 
+                            <br />
+                        </div>
+                      </Col>
+                    </Row>
+                    <Row className='lessMarginRow less-gutter'>
+                      <Col sm={2} className='margin-col'>  
+                        <div>
+                          <Button 
+                          style={style}
+                          bsSize="large"
+                          value="" 
+                          size="30" 
+                          type="button"
+                          block>
+                            <Glyphicon glyph="chevron-left" />
+                          </Button>
+                        </div>
+                      </Col>
+                      <Col sm={10} className='margin-col'>
+                        <div>
+                          <ButtonInput 
+                          style={style} 
+                          bsSize="large"
+                          value={buttonValue} 
+                          size="30" 
+                          type="submit" 
+                          id="submitButton" 
+                          block
+                          onClick={_this.handleClick} 
+                          disabled={buttonDisabled} />
+                        </div>
+                      </Col>
+                    </Row>  
+                  </fieldset>
+                </form>
+              </div>
+            </Col>
+          </Row>
+        </Grid>
+        );
+      }
+    });
+    /*
+      small error component that is displayed inline
+      within every form field component
+    */
+    var InputError = React.createClass({
+      getInitialState: function() {
+        return {
+          message: 'Input is invalid'
+        };
+      },
+      render: function(){ 
+        var errorClass = classNames(this.props.className, {
+          'error_container':   true,
+          'visible':           this.props.visible,
+          'invisible':         !this.props.visible
+        });
+        return (
+          <div className={errorClass}>
+            <span>{this.props.errorMessage}</span>
+          </div>
+        )
+      }
+    });
+    var MyInput = React.createClass({
+      getInitialState: function(){
+        //most of these variables have to do with handling errors
+        return {
+          isEmpty: true,
+          value: null,
+          valid: false,
+          errorMessage: "Input is invalid",
+          errorVisible: false
+        };
+      },
+      handleChange: function(event){
+        //validate the field locally
+        this.validation(event.target.value);
+        if (this.state.isEmpty == false)
+        {//Complete final validation from parent element when complete
+        var valid = this.props.validate(event.target.value);
+        //pass the result to the local validation element for displaying the error
+        this.validation(event.target.value, valid);}
+        //Call onChange method on the parent component for updating it's state
+        if(this.props.onChange) {
+          this.props.onChange(event);
+        }
+      },
+      validation: function (value, valid) {
+        if (typeof valid === 'undefined') {
+          valid = true;
+        }
+        var message = "";
+        var errorVisible = false;
+        //we know how to validate text fields based on information passed through props
+        if (!valid) {
+          //This happens when the user leaves the field, but it is not valid
+          //(we do final validation in the parent component, then pass the result
+          //here for display)
+          message = this.props.errorMessage;
+          valid = false;
+          errorVisible = true;
+        }
+        else if (this.props.required && jQuery.isEmptyObject(value)) {
+          //this happens when we have a required field with no text entered
+          //in this case, we want the "emptyMessage" error message
+          message = this.props.emptyMessage;
+          valid = false;
+          errorVisible = true;
+        }
+        else if (value.length < this.props.minCharacters) {
+          //This happens when the text entered is not the required length,
+          //in which case we show the regular error message
+          message = this.props.errorMessage;
+          valid = false;
+          errorVisible = true;
+        }
+        //setting the state will update the display,
+        //causing the error message to display if there is one.
+        this.setState({
+          value: value,
+          isEmpty: jQuery.isEmptyObject(value),
+          valid: valid,
+          errorMessage: message,
+          errorVisible: errorVisible
+        });
+      },
+      handleBlur: function (event) {
+        //Complete final validation from parent element when complete
+        var valid = this.props.validate(event.target.value);
+        //pass the result to the local validation element for displaying the error
+        this.validation(event.target.value, valid);
+      },
+      render: function() {
+        //define custom styles here
+        var style = {
+          height: "auto",
+          paddingTop: "20px",
+          paddingBottom: "20px",
+          paddingLeft: "15px",
+          paddingRight: "15px",
+          backgroundColor: "#FCFCFC",
+          verticalAlign:"middle",
+          fontSize: "1.2em",
+          borderRadius: "3px",
+          borderColor: "#E6E6E6"
+        };
+        return (
+          <div className={this.props.uniqueName}>
+            <Input
+              style = {style}
+              bsSize="large"
+              type="text"
+              placeholder={this.props.text}
+              className={'input input-' + this.props.uniqueName}
+              onChange={this.handleChange}
+              onBlur={this.handleBlur}
+              value={this.state.value} />
+            <InputError 
+              visible={this.state.errorVisible} 
+              errorMessage={this.state.errorMessage} />
+          </div>
+        );
+      }
+    });
+    var Consent = React.createClass({
+      getInitialState: function() {
+        return {isChecked: false};
+      },
+      handleChange: function() {
+        this.setState({isChecked: !this.state.isChecked});
+        //Complete final validation from parent element when complete
+        var valid = this.props.onChange(!this.state.isChecked);
+        },
+      render: function() {
+        //define custom styles here
+        var style = {
+          height: "auto",
+          paddingTop: "20px",
+          paddingBottom: "20px",
+          paddingLeft: "15px",
+          paddingRight: "15px",
+          backgroundColor: "#FCFCFC",
+          verticalAlign:"middle",
+          fontSize: "1.2em",
+          borderRadius: "3px",
+          borderColor: "#E6E6E6"
+        };
+        return (
+          <div className="consent">
+              <Input 
+                style={style}
+                bsSize="large"
+                className="checkbox-inline custom-checkbox" 
+                label="I consent to participate in the study" 
+                type="checkbox"
+                checked={this.state.isChecked}
+                name="consentBox" 
+                onChange={this.handleChange}/>
+          </div>
+        );
+      }
+    });
+
+    React.render(<FormBox />, document.getElementById("content"));
+    </script>
+  </body>
+</html>

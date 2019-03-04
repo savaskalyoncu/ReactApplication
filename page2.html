@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="1.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.25.1/react-bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/classnames/2.1.5/index.min.js"></script>
+    <title>Page2</title>
+  </head>
+  <body>
+    <Grid className="show-grid">
+      <PageHeader>
+        <h4>
+            <span >
+              <span class="glyphicon glyphicon-one-fine-empty-green-dot">
+              </span>
+                MEDCOMPANY
+            </span>
+        </h4>
+        <br/>
+        <small><p class="logo-line">Medcompany Efficacy Study</p></small>
+      </PageHeader>
+      <div id="content"></div>
+      <footer class="footer">
+        <p>
+          <a id='footer-link' href="www.someurl.com/contact" style="text-decoration:underline">Contact us</a>
+        </p>
+      </footer>
+    </Grid> 
+
+    <script type="text/jsx">
+      /** @jsx React.DOM */
+     'use strict';
+      var Accordion= ReactBootstrap.Accordion,
+          Affix= ReactBootstrap.Affix,
+          AffixMixin= ReactBootstrap.AffixMixin,
+          Alert= ReactBootstrap.Alert,
+          BootstrapMixin= ReactBootstrap.BootstrapMixin,
+          Badge= ReactBootstrap.Badge,
+          Button= ReactBootstrap.Button,
+          ButtonGroup= ReactBootstrap.ButtonGroup,
+          ButtonToolbar= ReactBootstrap.ButtonToolbar,
+          ButtonInput= ReactBootstrap.ButtonInput,
+          Carousel= ReactBootstrap.Carousel,
+          CarouselItem= ReactBootstrap.CarouselItem,
+          Col= ReactBootstrap.Col,
+          CollapsableMixin= ReactBootstrap.CollapsableMixin,
+          DropdownButton= ReactBootstrap.DropdownButton,
+          DropdownMenu= ReactBootstrap.DropdownMenu,
+          DropdownStateMixin= ReactBootstrap.DropdownStateMixin,
+          FadeMixin= ReactBootstrap.FadeMixin,
+          Glyphicon= ReactBootstrap.Glyphicon,
+          Grid= ReactBootstrap.Grid,
+          Input= ReactBootstrap.Input,
+          Interpolate= ReactBootstrap.Interpolate,
+          Jumbotron= ReactBootstrap.Jumbotron,
+          Label= ReactBootstrap.Label,
+          ListGroup= ReactBootstrap.ListGroup,
+          ListGroupItem= ReactBootstrap.ListGroupItem,
+          MenuItem= ReactBootstrap.MenuItem,
+          Modal= ReactBootstrap.Modal,
+          Nav= ReactBootstrap.Nav,
+          Navbar= ReactBootstrap.Navbar,
+          NavItem= ReactBootstrap.NavItem,
+          ModalTrigger= ReactBootstrap.ModalTrigger,
+          OverlayTrigger= ReactBootstrap.OverlayTrigger,
+          OverlayMixin= ReactBootstrap.OverlayMixin,
+          PageHeader= ReactBootstrap.PageHeader,
+          Panel= ReactBootstrap.Panel,
+          PanelGroup= ReactBootstrap.PanelGroup,
+          PageItem= ReactBootstrap.PageItem,
+          Pager= ReactBootstrap.Pager,
+          Popover= ReactBootstrap.Popover,
+          ProgressBar= ReactBootstrap.ProgressBar,
+          Row= ReactBootstrap.Row,
+          SplitButton= ReactBootstrap.SplitButton,
+          SubNav= ReactBootstrap.SubNav,
+          TabbedArea= ReactBootstrap.TabbedArea,
+          Table= ReactBootstrap.Table,
+          TabPane= ReactBootstrap.TabPane,
+          Tooltip= ReactBootstrap.Tooltip,
+          Well= ReactBootstrap.Well;
+
+      var libraries = [
+        { first_name:"John", last_name:'Doe',  zip:'01234', npi:12345},
+        { first_name:'Jane', last_name:'Doe', zip:'93110',  npi:23456},
+        { first_name:'John', last_name:'Dor', zip:'93110',  npi:23456},
+        {first_name:"Bran", last_name:"Doe", zip:"93110", npi:54321},
+        {first_name:"Jack", last_name:"Dob", zip:"94101", npi:35467},
+        { first_name:"John", last_name:"Doe", zip:"54312", npi:99999 },
+        { first_name:"Jack", last_name:"Dob", zip:"11002", npi:23556 },
+        { organization_name:"John Hopkins", zip:"01234", npi:22222 },
+        { organization_name:"Mercy Hospital", zip:"93110", npi:33333 },
+        { organization_name:"General Hospital", zip:"11002", npi:44533},,
+        { first_name:"John", last_name:'Doe',  zip:'01234', npi:12345},
+        { first_name:'Jane', last_name:'Doe', zip:'93110',  npi:23456},
+        { first_name:'John', last_name:'Dor', zip:'93110',  npi:23456},
+        {first_name:"Bran", last_name:"Doe", zip:"93110", npi:54321},
+        {first_name:"Jack", last_name:"Dob", zip:"94101", npi:35467},
+        { first_name:"John", last_name:"Doe", zip:"54312", npi:99999 },
+        { first_name:"Jack", last_name:"Dob", zip:"11002", npi:23556 },
+        { organization_name:"John Hopkins", zip:"01234", npi:22222 },
+        { organization_name:"Mercy Hospital", zip:"93110", npi:33333 },
+        { organization_name:"General Hospital", zip:"11002", npi:44533},,
+        { first_name:"John", last_name:'Doe',  zip:'01234', npi:12345},
+        { first_name:'Jane', last_name:'Doe', zip:'93110',  npi:23456},
+        { first_name:'John', last_name:'Dor', zip:'93110',  npi:23456},
+        {first_name:"Bran", last_name:"Doe", zip:"93110", npi:54321},
+        {first_name:"Jack", last_name:"Dob", zip:"94101", npi:35467},
+        { first_name:"John", last_name:"Doe", zip:"54312", npi:99999 },
+        { first_name:"Jack", last_name:"Dob", zip:"11002", npi:23556 },
+        { organization_name:"John Hopkins", zip:"01234", npi:22222 },
+        { organization_name:"Mercy Hospital", zip:"93110", npi:33333 },
+        { organization_name:"General Hospital", zip:"11002", npi:44533},,
+        { first_name:"John", last_name:'Doe',  zip:'01234', npi:12345},
+        { first_name:'Jane', last_name:'Doe', zip:'93110',  npi:23456},
+        { first_name:'John', last_name:'Dor', zip:'93110',  npi:23456},
+        {first_name:"Bran", last_name:"Doe", zip:"93110", npi:54321},
+        {first_name:"Jack", last_name:"Dob", zip:"94101", npi:35467},
+        { first_name:"John", last_name:"Doe", zip:"54312", npi:99999 },
+        { first_name:"Jack", last_name:"Dob", zip:"11002", npi:23556 },
+        { organization_name:"John Hopkins", zip:"01234", npi:22222 },
+        { organization_name:"Mercy Hospital", zip:"93110", npi:33333 },
+        { organization_name:"General Hospital", zip:"11002", npi:44533},,
+        { first_name:"John", last_name:'Doe',  zip:'01234', npi:12345},
+        { first_name:'Jane', last_name:'Doe', zip:'93110',  npi:23456},
+        { first_name:'John', last_name:'Dor', zip:'93110',  npi:23456},
+        {first_name:"Bran", last_name:"Doe", zip:"93110", npi:54321},
+        {first_name:"Jack", last_name:"Dob", zip:"94101", npi:35467},
+        { first_name:"John", last_name:"Doe", zip:"54312", npi:99999 },
+        { first_name:"Jack", last_name:"Dob", zip:"11002", npi:23556 },
+        { organization_name:"John Hopkins", zip:"01234", npi:22222 },
+        { organization_name:"Mercy Hospital", zip:"93110", npi:33333 },
+        { organization_name:"General Hospital", zip:"11002", npi:44533},,
+        { first_name:"John", last_name:'Doe',  zip:'01234', npi:12345},
+        { first_name:'Jane', last_name:'Doe', zip:'93110',  npi:23456},
+        { first_name:'John', last_name:'Dor', zip:'93110',  npi:23456},
+        {first_name:"Bran", last_name:"Doe", zip:"93110", npi:54321},
+        {first_name:"Jack", last_name:"Dob", zip:"94101", npi:35467},
+        { first_name:"John", last_name:"Doe", zip:"54312", npi:99999 },
+        { first_name:"Jack", last_name:"Dob", zip:"11002", npi:23556 },
+        { organization_name:"John Hopkins", zip:"01234", npi:22222 },
+        { organization_name:"Mercy Hospital", zip:"93110", npi:33333 },
+        { organization_name:"General Hospital", zip:"11002", npi:44533},
+        { first_name:"John", last_name:'Doe',  zip:'01234', npi:12345},
+        { first_name:'Jane', last_name:'Doe', zip:'93110',  npi:23456},
+        { first_name:'John', last_name:'Dor', zip:'93110',  npi:23456},
+        {first_name:"Bran", last_name:"Doe", zip:"93110", npi:54321},
+        {first_name:"Jack", last_name:"Dob", zip:"94101", npi:35467},
+        { first_name:"John", last_name:"Doe", zip:"54312", npi:99999 },
+        { first_name:"Jack", last_name:"Dob", zip:"11002", npi:23556 },
+        { organization_name:"John Hopkins", zip:"01234", npi:22222 },
+        { organization_name:"Mercy Hospital", zip:"93110", npi:33333 },
+        { organization_name:"General Hospital", zip:"11002", npi:44533},
+        { first_name:"John", last_name:'Doe',  zip:'01234', npi:12345},
+        { first_name:'Jane', last_name:'Doe', zip:'93110',  npi:23456},
+        { first_name:'John', last_name:'Dor', zip:'93110',  npi:23456},
+        {first_name:"Bran", last_name:"Doe", zip:"93110", npi:54321},
+        {first_name:"Jack", last_name:"Dob", zip:"94101", npi:35467},
+        { first_name:"John", last_name:"Doe", zip:"54312", npi:99999 },
+        { first_name:"Jack", last_name:"Dob", zip:"11002", npi:23556 },
+        { organization_name:"John Hopkins", zip:"01234", npi:22222 },
+        { organization_name:"Mercy Hospital", zip:"93110", npi:33333 },
+        { organization_name:"General Hospital", zip:"11002", npi:44533},
+        { first_name:"John", last_name:'Doe',  zip:'01234', npi:12345},
+        { first_name:'Jane', last_name:'Doe', zip:'93110',  npi:23456},
+        { first_name:'John', last_name:'Dor', zip:'93110',  npi:23456},
+        {first_name:"Bran", last_name:"Doe", zip:"93110", npi:54321},
+        {first_name:"Jack", last_name:"Dob", zip:"94101", npi:35467},
+        { first_name:"John", last_name:"Doe", zip:"54312", npi:99999 },
+        { first_name:"Jack", last_name:"Dob", zip:"11002", npi:23556 },
+        { organization_name:"John Hopkins", zip:"01234", npi:22222 },
+        { organization_name:"Mercy Hospital", zip:"93110", npi:33333 },
+        { organization_name:"General Hospital", zip:"11002", npi:44533},
+        { first_name:"John", last_name:'Doe',  zip:'01234', npi:12345},
+        { first_name:'Jane', last_name:'Doe', zip:'93110',  npi:23456},
+        { first_name:'John', last_name:'Dor', zip:'93110',  npi:23456},
+        {first_name:"Bran", last_name:"Doe", zip:"93110", npi:54321},
+        {first_name:"Jack", last_name:"Dob", zip:"94101", npi:35467},
+        { first_name:"John", last_name:"Doe", zip:"54312", npi:99999 },
+        { first_name:"Jack", last_name:"Dob", zip:"11002", npi:23556 },
+        { organization_name:"John Hopkins", zip:"01234", npi:22222 },
+        { organization_name:"Mercy Hospital", zip:"93110", npi:33333 },
+        { organization_name:"General Hospital", zip:"11002", npi:44533},
+        { first_name:"John", last_name:'Doe',  zip:'01234', npi:12345},
+        { first_name:'Jane', last_name:'Doe', zip:'93110',  npi:23456},
+        { first_name:'John', last_name:'Dor', zip:'93110',  npi:23456},
+        {first_name:"Bran", last_name:"Doe", zip:"93110", npi:54321},
+        {first_name:"Jack", last_name:"Dob", zip:"94101", npi:35467},
+        { first_name:"John", last_name:"Doe", zip:"54312", npi:99999 },
+        { first_name:"Jack", last_name:"Dob", zip:"11002", npi:23556 },
+        { organization_name:"John Hopkins", zip:"01234", npi:22222 },
+        { organization_name:"Mercy Hospital", zip:"93110", npi:33333 },
+        { organization_name:"General Hospital", zip:"11002", npi:44533},
+        { organization_name:"John Moore", zip:"01234", npi:22222 },
+        { organization_name:"John Smith1", zip:"01234", npi:22222 },
+        { organization_name:"John Smith2", zip:"01234", npi:22222 },
+        { organization_name:"John Smith3", zip:"01234", npi:22222 },
+        { organization_name:"John Smith4", zip:"01234", npi:22222 },   
+        { organization_name:"John Smith5", zip:"01234", npi:22222 },
+      ]; 
+      //==================================================================================================================================
+      //the main content of the page
+      var FormBox = React.createClass({
+        getInitialState: function() {
+          return {data: []};
+        },
+        render: function() {
+          return (
+            <div className="formBox">
+              <MyForm/>
+            </div>
+          );
+        }
+      });
+      var MyForm = React.createClass({
+        getInitialState: function() {
+          return {
+          };
+        },
+        render: function() {
+          return (
+            <Grid>
+              <Row>
+                <Col sm={10} smOffset={1}className="container box-center">
+                  <div className="innerbox">
+                    <form id='surveyForm' className="MyForm">
+                      <fieldset>
+                        <Row className='header-row less-gutter'>
+                          <Col sm={12}>  
+                            <PageHeader>
+                              <h3>Search for a physician or organization</h3>
+                            </PageHeader>
+                          </Col>  
+                        </Row>
+                        <Row className='margin-row less-gutter'>
+                          <Col sm={12}>
+                            <div id="searchDiv" className='form-group'>
+                              <SearchCompo items={ libraries }/>
+                            </div>   
+                          </Col>
+                        </Row>
+                      </fieldset>
+                   </form>
+                  </div>
+                </Col>
+              </Row>
+            </Grid>
+          );
+        }
+      });
+      //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+      //Search component
+
+      var SearchCompo = React.createClass({
+        getInitialState: function(){
+          return { searchString: ''};
+        },
+        handleChange: function(e){
+          this.setState({searchString:e.target.value});
+        },
+        render: function() {
+          var searchString = this.state.searchString;
+          searchString = searchString.trim().toLowerCase();
+          var nameArray = searchString.split(" ");
+          var firstName = nameArray[0];
+          var lastName = nameArray[1];
+          var currLibraries = this.props.items;
+
+          //custom style for the input and result fields
+          var style = {
+          height: "auto",
+          paddingTop: "20px",
+          paddingBottom: "20px",
+          paddingLeft: "15px",
+          paddingRight: "15px",
+          backgroundColor: "#FCFCFC",
+          verticalAlign:"middle",
+          fontSize: "1.2em",
+          borderRadius: "3px",
+          borderColor: "#E6E6E6",
+          color: "black"
+          };
+
+          if(searchString.length > 0){
+
+            // FILTER We are searching for first name only. Filter the results
+            if (!lastName) {
+             //filter by first name
+              currLibraries = currLibraries.filter(function(l){
+              var reFirst = new RegExp("^" + firstName,"g");
+              //get first key in object
+              var myFirstKey = Object.keys(l)[0];
+              var myFirstValue = l[myFirstKey];
+              return myFirstValue.toLowerCase().match(reFirst);
+              });
+            }
+
+            // FILTER We are searching for first and last name. Filter the results
+            else if (lastName) {
+             //filter by first and last name
+              currLibraries = currLibraries.filter(function(l){
+              var reFirst = new RegExp("^" + firstName,"g");
+              var reSecond = new RegExp("^" + lastName,"g");
+              var reEntire = new RegExp("^" + firstName + "\x20" + lastName,"g");
+              //get first key in object
+              var myFirstKey = Object.keys(l)[0];
+              var myFirstValue = l[myFirstKey];
+              var matchResult;
+              if (myFirstKey == "first_name") 
+                matchResult = l.first_name.toLowerCase().match(reFirst) && l.last_name.toLowerCase().match(reSecond);
+              else {
+                matchResult = l.organization_name.toLowerCase().match(reEntire);
+              }
+              return matchResult;
+              });
+            }
+
+            //MAP : map to a simpler array with only first and last name / organization name and zip 
+            currLibraries = currLibraries.map(function(l){
+              //get first key in object
+              var myFirstKey = Object.keys(l)[0];
+              var myFirstValue = l[myFirstKey];
+              if (myFirstKey == "first_name") return { 
+                myFirstName: l.first_name,
+                myLastName: l.last_name,
+                entireName: l.first_name+" "+l.last_name,
+                myLocation: l.zip 
+              };
+              else return {
+                myOrganizationName: l.organization_name,
+                entireName: l.organization_name,
+                myLocation: l.zip 
+              };
+            }) ;
+          
+            //REDUCE :now reduce and create new object with every name counted and with array of zips
+            currLibraries = currLibraries.reduce(function (acc, curr) {
+              //get first key in object
+              var myFirstKey = Object.keys(curr)[0];
+              var myFirstValue = curr[myFirstKey];
+              //check if name exists
+              if (typeof acc[curr.entireName] == 'undefined') {
+                if (myFirstKey == "myFirstName") { 
+                  acc[curr.entireName] = { 
+                  myFirstName: curr.myFirstName,
+                  myLastName: curr.myLastName,
+                  entireName: curr.entireName,
+                  myLocations: {},
+                  number_of_names: 1,
+                  number_of_locations : 1
+                  };
+                  acc[curr.entireName].myLocations[curr.myLocation] = 1;
+                }           
+                else {
+                  acc[curr.entireName] = { 
+                  myOrganizationName: curr.myOrganizationName,
+                  entireName: curr.entireName,
+                  myLocations: {},
+                  number_of_names: 1,
+                  number_of_locations : 1
+                  };
+                  acc[curr.entireName].myLocations[curr.myLocation] = 1;
+                }        
+              }
+              //name already exists  
+              else {
+                acc[curr.entireName].number_of_names += 1;
+                //check if zip already exists
+                if ((typeof acc[curr.entireName].myLocations[curr.myLocation] == 'undefined')) {
+                  acc[curr.entireName].myLocations[curr.myLocation] = 1;
+                  acc[curr.entireName].number_of_locations += 1;
+                }
+              }
+              return acc;
+            }, {});
+            //CONVERT : convert object back into an array 
+            currLibraries = Object.keys(currLibraries).map(function (key) {return currLibraries[key]});
+          return (
+            <div>
+              <Input 
+                id="searchField"
+                style={style}
+                type="text" 
+                value={this.state.searchString} 
+                onChange={this.handleChange} 
+                placeholder="Search for a doctor, physician, or organization by name"/>
+              <div>
+                <Pagination items={ currLibraries }/>
+              </div>
+            </div>
+            );
+          }
+          //NO search string typed in input field 
+          else  
+            return (
+              <div>
+                <Input id="searchField" 
+                  type="text" 
+                  value={this.state.searchString} 
+                  onChange={this.handleChange} 
+                  placeholder="Search for a doctor, physician, or organization by name"/>
+              </div>
+             ); 
+          }
+      });
+
+    //==========================================================================================================================================
+    //Pagination Component
+      var Pagination = React.createClass({
+        componentDidMount: function() {
+            this.onChangePage(1);
+        },
+        componentWillReceiveProps: function(nextProps) {
+          this.setState({
+            items : nextProps.items
+          });
+        },  
+        getData: function(page) {
+          var currItems = this.props.items.slice(PER_PAGE * (page - 1), PER_PAGE * (page - 1) + PER_PAGE);
+          return currItems; 
+        },
+        getInitialState: function() {
+          return {
+            items: this.getData(1),
+            loading: true,
+            myPage: 1,
+          };
+        },
+        onChangePage: function(page) {
+          this.setState({
+            loading: true,
+            myPage: page,
+          });
+          var myItems = this.getData(page);
+          this.setState({
+            items: myItems,
+            loading: false
+          });
+        },
+       renderItem: function(l) { 
+        if (l.number_of_locations > 1) 
+          return (
+            <Button id="myPanel">
+              <div id="panelCell1">
+                  <div >
+                <div id="myPanelBody">
+                  <span >
+                    <span className="glyphicon glyphicon-one-fine-empty-grey-dot">
+                    </span>
+                      {l.entireName}
+                  </span>
+                </div>
+                <div className="countNumber">
+                  <span>
+                    We found {l.number_of_names} {l.entireName} practicing nearby at {l.number_of_locations} locations
+                  </span>
+                </div>
+              </div>
+                </div>
+              <div id="panelCell2">
+                <Glyphicon id= "panelGlyph" glyph="chevron-right" />
+              </div>
+            </Button>
+            );
+        else return (
+          <Button id="myPanel">
+              <div id="panelCell1">
+                <div >
+              <div id="myPanelBody">
+                <span >
+                  <span className="glyphicon glyphicon-one-fine-empty-grey-dot">
+                  </span>
+                    {l.entireName}
+                </span>
+              </div>
+              <div className="countNumber">
+                We found {l.number_of_names} {l.entireName} nearby
+              </div>
+            </div>
+              </div>
+            <div id="panelCell2">
+              <Glyphicon id= "panelGlyph" glyph="chevron-right" />
+            </div>
+        </Button>
+          );
+        },
+        render: function() {
+          var s = this.state;
+          var self = this;
+          var itemsSlice = this.getData(this.state.myPage);
+          return (
+            <div>
+              {s.loading
+                  ? <div>Loading...</div>
+                  : <div>{itemsSlice.map(this.renderItem)}</div>
+              }
+              <div id="paginatorDiv">
+                <Paginator max={8} onChange={self.onChangePage} itemsCount={this.props.items.length}/>
+              </div>
+            </div>
+          );
+        }
+      });
+
+      //========================================================================================================================================
+      //Paginator for Pagination Component
+      var PER_PAGE = 5;
+      var Paginator = React.createClass({
+        propTypes: {
+          max: React.PropTypes.number.isRequired,
+          maxVisible: React.PropTypes.number,
+          itemsCount: React.PropTypes.number,
+          onChange: React.PropTypes.func.isRequired
+        },
+        componentDidUpdate: function(prevProps, prevState) {
+          if (prevState.currentPage !== this.state.currentPage) {
+              this.props.onChange(this.state.currentPage);
+          }
+        },
+        getDefaultProps: function() {
+          return{
+            maxVisible: 5
+          };
+        },
+        getInitialState: function() {
+          return {
+            currentPage: 1,
+            currMaxVisible: this.props.maxVisible,
+            items: []
+          };
+        },
+        calculatePaginatorLength: function() {
+          if (this.props.itemsCount % this.props.PER_PAGE > 0 ) {
+              var pageCount = this.props.itemsCount / this.props.PER_PAGE + 1;
+          }
+          else {
+            var pageCount = this.props.itemsCount / this.props.PER_PAGE;
+          }
+          return pageCount;
+        },
+        goTo: function(page) {
+          this.setState({currentPage: page});
+        },
+        onClickNext: function() {
+          var page = this.state.currentPage;
+
+          if (page < this.props.max) {
+              this.goTo(page + 1);
+          }
+        },
+        onClickPrev: function() {
+          if (this.state.currentPage > 1) {
+              this.goTo(this.state.currentPage - 1);
+          }
+        },
+        render: function() {
+          var className = this.props.className || '',
+            p = this.props,
+            s = this.state,
+            skip = 0;
+          if (s.currentPage > p.maxVisible - 1 && s.currentPage < p.max) {
+              skip = s.currentPage - p.maxVisible + 1;
+          } else if (s.currentPage === p.max) {
+              skip = s.currentPage - p.maxVisible;
+          }
+          var iterator = Array.apply(null, Array(p.maxVisible)).map(function(v, i) {
+              return skip + i + 1;
+          });
+          var pageCount = this.calculatePaginatorLength();
+          return (
+            <nav>
+              <ul className={'pagination ' + className}>
+                <li className={s.currentPage === 1 ? 'disabled' : ''}>
+                    <a href="#" onClick={this.onClickPrev}>
+                        <span aria-hidden="true"><Glyphicon glyph="chevron-left" /></span>
+                        <span className="sr-only">Prev</span>
+                    </a>
+                </li>
+                {iterator.map(function(page) {
+                  return (
+                    <li key={page}
+                        onClick={this.goTo.bind(this, page)}
+                        className={s.currentPage === page ? 'active' : '' }>
+                        <a href="#">{page}</a>
+                    </li>
+                  );
+                }, this)}
+                <li className={s.currentPage === p.max ? 'disabled' : ''}>
+                  <a href="#" onClick={this.onClickNext}>
+                    <span aria-hidden="true"> <Glyphicon glyph="chevron-right" /></span>
+                    <span className="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          );
+        }
+      });
+      //=====================================================================================================================================
+      //render Main Component, which itself renders the search component
+      React.render(<FormBox />, document.getElementById("content"));
+    </script>
+  </body>
+</html>
