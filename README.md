@@ -6,8 +6,8 @@ This is my first REACT page which i built 3 years ago as a quick exercise. The p
 2) second page shows a serach page where medical facilities or people can be searched
 
 
-One can only navigate from first page to second page when checking a checkbox and filling the entire input form.
-The search page shows paginated search results once letters are typed into the search field
+One can only navigate from first page to second page when checking a checkbox and filling the entire input form. There is a rudimentary input validation implemented, which for instance does not allow numbers for specifying a location.
+The search page shows paginated search results once letters are typed into the search field. (Number of pagination links has to be fixed)
 
 The application is using dummy data, which is hard-coded and thus not accessing a database.
 Additionally the code could be better refactored instead of being all in two files(due to time issues this solution was implemented)
